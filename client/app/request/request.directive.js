@@ -10,7 +10,12 @@ angular.module('bookjumpApp')
       controller: function($scope, $http, Auth) {
         $scope.approved = [];
         $scope.otherApproved=[];
-        $scope.show=0;
+        $scope.showing=0;
+
+        $scope.show = function(pane) {
+          $scope.showing = $scope.showing == pane ? 0 : pane;
+        }
+
         $scope.approve = function(req) {
           $http.put('/api/requests/' + req._id, req).success(function(){
             $http.get('/api/requests/user/' + $scope.getCurrentUser()._id).success(function(data) {

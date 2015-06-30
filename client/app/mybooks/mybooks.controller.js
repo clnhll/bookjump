@@ -8,8 +8,6 @@ angular.module('bookjumpApp')
       $scope.books=books;
     })
 
-
-
     $scope.addBook = function(){
       $(".btn").prop("disabled",true);
       $(".form-control").prop("disabled",true);
