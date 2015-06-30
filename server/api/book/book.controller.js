@@ -2,12 +2,38 @@
 
 var _ = require('lodash');
 var Book = require('./book.model');
+var google = require('googleapis');
+var books = google.books('v1');
+
+var API_KEY = 'AIzaSyCp6TeBmn43CwAoM-_E8judP6-LuUoiAuo'; // specify your API key here
 
 // Get list of books
 exports.index = function(req, res) {
   Book.find(function (err, books) {
     if(err) { return handleError(res, err); }
     return res.json(200, books);
+  });
+};
+exports.indexUser = function(req, res) {
+  Book.find({owner: req.params.id}, function (err, books) {
+    if(err) { return handleError(res, err); }
+    return res.json(200, books);
+  });
+};
+exports.search = function(req, res) {
+  books.volumes.list({
+    auth: API_KEY,
+    q: req.params.search
+  }, function(err, data) {
+    var newBook = {
+      title: data.items[0].volumeInfo.title,
+      owner: req.params.id,
+      cover: data.items[0].volumeInfo.imageLinks.thumbnail
+    }
+    Book.create(newBook, function(err, book) {
+      if(err) { return handleError(res, err); }
+      return res.json(201, book);
+    });
   });
 };
 

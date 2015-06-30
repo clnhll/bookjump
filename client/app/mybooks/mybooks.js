@@ -5,6 +5,7 @@ angular.module('bookjumpApp')
     $routeProvider
       .when('/mybooks', {
         templateUrl: 'app/mybooks/mybooks.html',
-        controller: 'MybooksCtrl'
+        controller: 'MybooksCtrl',
+        authenticate: true
       });
   });

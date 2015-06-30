@@ -4,8 +4,9 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var BookSchema = new Schema({
-  name: String,
-  info: String,
+  title: String,
+  owner: String,
+  cover: String,
   active: Boolean
 });
 
