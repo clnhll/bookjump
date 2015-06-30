@@ -28,7 +28,8 @@ exports.search = function(req, res) {
     var newBook = {
       title: data.items[0].volumeInfo.title,
       owner: req.params.id,
-      cover: data.items[0].volumeInfo.imageLinks.thumbnail
+      cover: data.items[0].volumeInfo.imageLinks === undefined ? '' : data.items[0].volumeInfo.imageLinks.thumbnail,
+      requested: false
     }
     Book.create(newBook, function(err, book) {
       if(err) { return handleError(res, err); }
@@ -60,8 +61,9 @@ exports.update = function(req, res) {
   Book.findById(req.params.id, function (err, book) {
     if (err) { return handleError(res, err); }
     if(!book) { return res.send(404); }
-    var updated = _.merge(book, req.body);
-    updated.save(function (err) {
+    book.requested = book.requested ? false : true;
+    //var updated = _.merge(book, req.body);
+    book.save(function (err) {
       if (err) { return handleError(res, err); }
       return res.json(200, book);
     });

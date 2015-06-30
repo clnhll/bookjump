@@ -1,1 +1,34 @@
-<div>this is the request directive</div>
+<button ng-click="show=1" class="btn btn-success">Your trade requests ({{myReqs.length}} outstanding)</button> <button ng-click="show=2" class="btn btn-primary">Trade requests for you ({{otherReqs.length}} unapproved)</button>
+
+<div class="row" ng-show="myReqs.length !== 0 && show==1">
+  <div class="col-lg-12">
+    <h1 class="page-header">Your outstanding requests:</h1>
+    <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="request in myReqs">
+      <li><a href="">{{request.book}}<button class="close"><i class="fa fa-times" ng-click="cancelReq(request)"></i></button></a></li>
+    </ul>
+  </div>
+</div>
+<div class="row" ng-show="otherApproved.length !== 0 && show==1">
+  <div class="col-lg-12">
+    <h1 class="page-header">Your trade request was approved:</h1>
+    <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="request in otherApproved">
+      <li><a href="">{{request.book}}<button class="close" ng-click="cancelReq(request)"><i class="fa fa-times"></i></button></a></li>
+    </ul>
+  </div>
+</div>
+<div class="row" ng-show="otherReqs.length !== 0 && show==2">
+  <div class="col-lg-12">
+    <h1 class="page-header">Requests from other users:</h1>
+    <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="request in otherReqs">
+      <li><a href="">{{request.book}}<button class="close" ng-click="approve(request)"><i class="fa fa-check"></i></button><button class="close" ng-click="cancelReq(request)"><i class="fa fa-times"></i></button></a></li>
+    </ul>
+  </div>
+</div>
+<div class="row" ng-show="approved.length !== 0 && show==2">
+  <div class="col-lg-12">
+    <h1 class="page-header">Requests you've approved:</h1>
+    <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="request in approved">
+      <li><a href="">{{request.book}}<button class="close" ng-click="cancelReq(request)"><i class="fa fa-times"></i></button></a></li>
+    </ul>
+  </div>
+</div>

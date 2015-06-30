@@ -10,12 +10,12 @@
         <div class="form-group">
           <label>City</label>
 
-          <input type="text" name="city" class="form-control" ng-model="city"/>
+          <input type="text" name="city" class="form-control" placeholder="{{getCurrentUser().city}}" ng-model="city"/>
         </div>
         <div class="form-group">
           <label>State</label>
 
-          <input type="text" name="state" class="form-control" ng-model="state"/>
+          <input type="text" name="state" class="form-control" placeholder="{{getCurrentUser().state}}" ng-model="state"/>
         </div>
         <button class="btn btn-lg btn-primary" type="submit">Save changes</button>
       </form>

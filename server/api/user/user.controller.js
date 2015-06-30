@@ -79,6 +79,22 @@ exports.changePassword = function(req, res, next) {
   });
 };
 
+
+
+// Updates an existing book in the DB.
+exports.update = function(req, res) {
+  User.findById(req.params.id, function (err, user) {
+    if (err) { return handleError(res, err); }
+    if(!user) { return res.send(404); }
+    user.city = req.params.city;
+    user.state = req.params.state;
+    user.save(function (err) {
+      if (err) { return handleError(res, err); }
+      return res.json(200, user);
+    });
+  });
+};
+
 /**
  * Get my info
  */

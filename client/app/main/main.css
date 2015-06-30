@@ -28,3 +28,27 @@
     margin-top: 70px;
     border-top: 1px solid #E5E5E5;
 }
+.cover {
+  display: inline-block;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 3px;
+  margin: 3px;
+}
+.cover .close {
+  float: none;
+  vertical-align: top;
+  margin-left:-20px;
+  color: crimson;
+  opacity:.5;
+}
+.cover .close:hover {
+  opacity:1;
+  color: crimson;
+}
+.fa-check {
+  color: green;
+}
+.fa-times {
+  color: red;
+}

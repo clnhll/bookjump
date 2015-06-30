@@ -1,8 +1,13 @@
 'use strict';
 
 angular.module('bookjumpApp')
-  .controller('SettingsCtrl', function ($scope, User, Auth) {
+  .controller('SettingsCtrl', function ($scope, User, Auth, $http) {
     $scope.errors = {};
+    $scope.getCurrentUser = Auth.getCurrentUser;
+
+    $scope.updateProfile = function() {
+      $http.put('/api/users/' + $scope.getCurrentUser()._id + '/' + $scope.city + '/' + $scope.state);
+    }
 
     $scope.changePassword = function(form) {
       $scope.submitted = true;

@@ -4,9 +4,10 @@
   <div class="row">
     <div class="col-lg-12">
       <h1 class="page-header">All Books:</h1>
-      <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="book in books">
-        <li><a>{{book.title}}<button type="button" class="close" ng-click="requestTrade(book)"><i class="fa fa-retweet"></i></button></a></li>
-      </ul>
+      <p>Click the <i class="fa fa-retweet"></i> to request a trade!</p>
+      <div class="cover" ng-repeat="book in books">
+        <a><img ng-src="{{book.cover}}" alt="{{book.title}}"/><button ng-hide="book.requested || book.owner == getCurrentUser()._id" type="button" class="close" ng-click="requestBook(book)"><i class="fa fa-retweet"></i></button></a>
+      </div>
     </div>
   </div>
 </div>

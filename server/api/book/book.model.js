@@ -7,6 +7,10 @@ var BookSchema = new Schema({
   title: String,
   owner: String,
   cover: String,
+  requested: {
+    type: Boolean,
+    default: false
+    },
   active: Boolean
 });
 
